@@ -1,0 +1,160 @@
+{% extends "homepage.html" %}
+{%block title%}TV{%endblock%}
+
+{% block navbar%}
+    <nav class="nav-bar" data-nav-bar>
+        <ul class="ul-bar">
+            <li class="list-unstyled"><a href="/home"><i class="fa fa-home"></i><span>Home</span></a></li>
+            <li class="list-unstyled active"><a href="/tv"><i class="fa-solid fa-tv"></i><span>Tv</span></a></li>
+            <li class="list-unstyled "><a href="/comedy"><i class="fa-solid fa-face-laugh-beam"></i><span>Comedy Shows</span></a></li>
+            <li class="list-unstyled"><a href="/drame"><i class="fa-solid fa-bolt"></i><span>Drama</span></a></li>
+            <li class="list-unstyled"><a href="/action"><i class="fa-solid fa-user-ninja"></i><span>Action</span></a></li>
+        </ul>
+        <div class="mask-nav"></div>
+    </nav>
+    {% endblock %}
+
+     <!-- popin search button -->
+     {%block search_query%}
+     <div class="maximize_popup_on_search_click">
+         <div class="search_query_display_layout_tv" data-popup-search>
+             <form  method="get">
+                 <input type="search" name="search" id="search" placeholder="Search" autocomplete="off">
+                 <button type="submit">Search</button>
+             </form>
+            <i class="fa fa-times"></i>
+         </div>
+ 
+         <div class="flex_search_query">
+             <h1>Search Query</h1>
+             <div class="bubblingG" data-search-loader>
+                 <span id="bubblingG_1">
+                 </span>
+                 <span id="bubblingG_2">
+                 </span>
+                 <span id="bubblingG_3">
+                 </span>
+               </div>
+             <div class="random_names_before_search">
+             </div>
+         </div>
+         <p class="fail_connection"></p>
+         
+         <h2 id="header_for_search"></h2>
+         <div class="wrap-movies-search" data-wrap-search-tv></div>
+         <div class="bubblingG" data-search-img-loader>
+             <span id="bubblingG_1">
+             </span>
+             <span id="bubblingG_2">
+             </span>
+             <span id="bubblingG_3">
+             </span>
+           </div>
+         <template data-search-template-tv>
+             <div class="movie-container">
+                 <div class="movie-image-bar">
+                     <img src="{{url_for('static', filename='images/aqua.jpg')}}" alt="Movie Image">
+                 </div>
+                 <div class="movie-name-bar">
+                     <span>Aqua Man and The Legendary Goat</span>
+                 </div>
+             </div>
+         </template>
+     </div>
+     {%endblock%}
+
+     {%block body%}
+<div class="page-container">
+    <div class="title-layout-container">
+        <div class="video-background"></div>
+        <div class="movie-play-layout" data-movie-clip>
+            <p class="p-tag">Loading....</p>
+        </div>
+        
+        <template data-video-template>
+            <div class="video_container">
+            <div class="video-wrapper" data-video-wrapper>
+                <div class="video-space"><span class="video" data-video-frame></span></div>
+                <div class="video-content">
+                    <h1 class="v-name" data-movie-text>The Magic Flute</h1>
+                    <div class="v-buttons">
+                        <button type="button"><i class="fa fa-caret-right"></i>&nbsp;Play</button>
+                        <button type="button"><i class="fa fa-plus"></i>&nbsp;List</button>
+                    </div>
+                <span class="video-description" data-desc>
+                    The UnRevealing Rapture Unvails the commitment of the Magic Flutexc
+                </span>
+                </div>
+                  </div>
+            </div>
+        </template>
+        <div class="scroll-movies-wrapper" style="margin-top: -7rem;">
+           {%block nav_title %} <h1 class="nav-title">TV</h1> {%endblock%}
+            <div class="scroll-movies" data-scroll-one></div>
+            <template class="first-column-template">
+                <div class="movie-container">
+                    <span class="notify-bar"><i class="fa-solid fa-star"></i></span>
+                    <div class="movie-image-bar">
+                        <img src="{{url_for('static', filename='images/aqua.jpg')}}" alt="Movie Image">
+                    </div>
+                    <div class="movie-name-bar">
+                        <span>Aqua Man and The Legendary Goat</span>
+                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                    </div>
+                </div>
+               
+            </template>
+
+            <!-- MOVEBUTTON -->
+            <div class="move-left" title="Previous"><i class="fa-solid fa-caret-left"></i></div>
+            <div class="move-right" title="Next"><i class="fa-solid fa-caret-right"></i></div>
+        </div>
+
+        <!-- WRAP MOVIES -->
+        <div class="movie-wrap-container">
+            <div class="pop-text nav-title">Popular Movies to Watch</div>
+
+            <div class="wrap" data-wrap-movie>  </div>
+            <template data-wrap-template>
+                <div class="movie-container">
+                    <span class="notify-bar"><i class="fa-solid fa-star"></i></span>
+                    <div class="movie-image-bar">
+                        <img src="{{url_for('static', filename='images/aqua.jpg')}}" alt="Movie Image">
+                    </div>
+                    <div class="movie-name-bar">
+                        <span>Aqua Man and The Legendary Goat</span>
+                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                    </div>
+                </div>
+            </template>
+        </div>
+
+        <div class="pagination">
+            <ul>
+                <li>Previous</li>
+                <li class="active">1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+                <li>5</li>
+                <li>6</li>
+                <li>7</li>
+                <li>8</li>
+                <li>9</li>
+                <li>10</li><p>....</p>
+                <li>20</li>
+                <li>Next</li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+
+{%endblock%}
+
+     
+{%block scripts%}
+<script src="{{url_for('static', filename='js/home.js')}}" defer></script>
+<script src="{{url_for('static', filename='js/apiTv.js')}}" defer></script>
+<script src="{{url_for('static', filename='js/searchTvjson.js')}}" defer></script>
+{%endblock%}

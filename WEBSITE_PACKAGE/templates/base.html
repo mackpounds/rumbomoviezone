@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="author" content="mackpounds">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Based on this content, This web is used for checking updates on the type of movies that is out or to come out.">
+    <title>{% block title %}{% endblock %} - PorloRumbo </title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.6/css/all.css">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet">
+    <link rel="shortcut icon" href="{{url_for('static', filename='images/porloLogo22.png')}}" type="image/x-icon">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='font awesome/fonts/css/all.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='font awesome/fonts/js/all.min.js')}}">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">    -->
+    <link rel="stylesheet" href="{{url_for('static', filename='bootstrap/js/bootstrap.min.js')}}">
+    <script src="{{url_for('static', filename='js/script.js')}}" defer></script>
+</head>
+<body>
+ 
+  {% block popup_failed_internet_provider %}
+    <!-- for failed internet  -->
+  {%endblock%}
+
+  {%block loader%}
+  <div class="loader_container" data-window-loader>
+    <div class="bubblingG">
+      <span id="bubblingG_1">
+      </span>
+      <span id="bubblingG_2">
+      </span>
+      <span id="bubblingG_3">
+      </span>
+    </div>
+  </div>
+  {%endblock%}
+
+   <!-- =======HEADER====== -->
+   <header>
+    <div class="main-wrapper">
+      {% block nav_container %}
+        <div class="main-container">
+            
+            <!-- LOGOBAR -->
+            <i class="fa-solid fa-bars" data-far-bars></i>
+            <a href="" class="logo-bar">
+                <img src="{{url_for('static', filename='images/porloLogo22.png')}}" alt="LOGOIMG" width="60px" class="logo-img">
+                <h2 class="logo-name">PorloRumbo</h2>
+                <!-- <h2 class="logo-name">PorloR</h2> -->
+            </a>
+
+            <!-- NAVBAR -->
+            <!-- <i class="fa-solid fa-caret-down"></i> -->
+            {%if user.is_authenticated %}
+            <nav class="nav-bar" data-nav-bar>
+                <ul class="ul-bar">
+                    <li class="list-unstyled "><a href=""><i class="fa fa-home"></i><span>Home</span></a></li>
+                    <li class="list-unstyled"><a href=""><i class="fa-solid fa-tv"></i><span>Tv</span></a></li>
+                    <li class="list-unstyled"><a href=""><i class="fa-solid fa-face-laugh-beam"></i><span>Comedy Shows</span></a></li>
+                    <li class="list-unstyled"><a href=""><i class="fa-solid fa-bolt"></i><span>Drama</span></a></li>
+                    <li class="list-unstyled"><a href=""><i class="fa-solid fa-user-ninja"></i><span>Action</span></a></li>
+                </ul>
+                <div class="mask-nav"></div>
+            </nav>
+
+            <!-- SIDEBAR -->
+            <div class="nav-bar-right">
+              <span class="search-bar"><i class="fa-solid fa-search"></i></span>
+              <span class="side-menu-bar"><i class="fa-solid fa-ellipsis"></i></span>
+            </div>
+            <nav class="side-bar" data-side-bar>
+              <ul class="ul-bar">
+                  <li class="list-unstyled"><a href=""><i class="fa fa-user-circle"></i><span>Profile</span></a></li>
+                  <li class="list-unstyled"><a href=""><i class="fa-solid fa-cog"></i><span>Settings</span></a></li>
+                  <li class="list-unstyled"><a href="/logout"><i class="fa-solid fa-arrow-right-from-bracket"></i><span>Logout</span></a></li>
+              </ul>
+          </nav>
+
+          {%else%}
+            <!-- AUTH CREDENTIALS -->
+            <div class="auth-credentials">
+                <a href="/login#form-container" class="auth"><button type="button"  class="auth-credentials-login" data-sign-in>Login</button></a>
+                <a href="/signup#form-container" class="auth"><button type="button" class="auth-credentials-signup" data-sign-up>SignUp</button></a>
+            </div>
+
+          {%endif%}
+        </div>
+      {%endblock%}
+    </div>
+</header>
+
+ {% with messages =  get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    {% for category,message in messages %}
+      {% if category == 'error' %}
+        <div class='alert alert-danger alert-dismissable fade show' role='alert'>
+          {{ message }}
+          
+          <button type='button' class="close" data-dismiss="alert">
+            <span aria-hidden='true'>&times;</span>
+          </button>
+        </div>
+      {% else %}
+      <div class='alert alert-success alert-dismissable fade show' role='alert'>
+        {{ message }}
+        <button type='button' class="close" data-dismiss="alert">
+          <span aria-hidden='true'>&times;</span>
+        </button>
+      </div>
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+ {% endwith %}
+
+
+
+    {% block body %}
+      <h1> I LOVE CODES ! </h1>
+    {% endblock %}
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js" defer></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" defer></script>
+<script src="{{url_for('static', filename='js/loader.js')}}" defer></script>
+{%block scripts%}{%endblock%}
+</body>
+</html>
